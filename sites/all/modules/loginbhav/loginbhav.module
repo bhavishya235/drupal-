@@ -1,0 +1,51 @@
+<?php
+
+function loginbhav_menu(){
+	$flag=1;
+    $items = array();
+    $items['loginbhav_bhav']=array(
+        'title'=>'SignUp',
+        'page callback'=>'select_form_bhav',
+        'page arguments'=>array('1'),
+        'access callback'=>TRUE,
+        'type'=>MENU_NORMAL_ITEM,  
+    );
+    return $items;
+}
+
+function select_form_bhav($flag2)
+{
+	//$flag2=9;
+	echo "hooo" . $flag2;
+	//dsm($flag);
+	/*switch($flag)
+	{
+		case 0:
+			drupal_get_form(loginbhav_addfile_form);
+			break;
+		case 1:
+			drupal_get_form(loginbhav_adddetail_form);
+		case 2:
+			drupal_get_form(loginbhav_finalstep_form);
+	}*/
+}
+
+function loginbhav_addfile_form( $form,&$form_state){
+		
+	$form = array();
+    	$form['foo'] = array(
+    		'#type' => 'textfield',
+    		'#title' => t('case0'),
+    	);
+
+    	$form['submit']=array(
+       		'#type' => 'submit',
+       		'#value' => t('next'),
+    	);
+
+    return $form;
+}
+
+function loginbhav_addfile_submit($form, &$form_state){
+	drupal_set_message(t('flag kikoko'));
+}

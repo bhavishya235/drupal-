@@ -1,0 +1,35 @@
+<?php
+function bhavxyz_menu(){
+    $items = array();
+    $items['xyz']=array(
+        'title'=>'select image for display',
+        'page callback'=>'drupal_get_form',
+        'page arguments'=>array('bhavxyz_form'),
+        'access callback'=>TRUE,
+        'type'=>MENU_NORMAL_ITEM,  
+    );
+    return $items;
+}
+
+
+function bhavxyz_form($form,&$form_state){
+	$form = array();
+
+
+
+    	$form['content']['choice'] = array(
+		'#type' => 'checkboxes',
+  		'#options' => drupal_map_assoc(array(t('SAT'), t('ACT'))),
+  		'#title' => t('Select Your Content For xyz'),
+    	);
+    	$form['submit']=array(
+        	'#type' => 'submit',
+        	'#value' => t('upload'),
+    	);
+    return $form;
+}
+
+function bhav_nodeload($type='1',$category='1',$user='1')
+	{
+		$query = "SELECT * FROM node WHERE ";
+	}

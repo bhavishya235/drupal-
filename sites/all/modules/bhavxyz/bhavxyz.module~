@@ -1,0 +1,161 @@
+<?php
+function bhavxyz_menu(){
+    $items = array();
+    $items['xyz']=array(
+        'title'=>'select image for display',
+        'page callback'=>'drupal_get_form',
+        'page arguments'=>array('bhavxyz_form'),
+        'access callback'=>TRUE,
+        'type'=>MENU_NORMAL_ITEM,  
+    );
+    return $items;
+}
+
+
+function bhavxyz_form($form,&$form_state){
+	$form = array();
+	bhav_nodeload();
+
+	$query = "
+			SELECT *
+			FROM faketab
+		";
+
+	$result = db_query($query);
+	//print_r($result);	
+	echo "<pre>";
+	while($record = $result->fetchAssoc()) {
+				$rid[]=$record['rid'];
+				$nid[]=$record['nid'];
+				$title[]=$record['title'];
+				$uri[]=$record['uri'];
+				$username[]=$record['username'];
+				//dsm($record);			
+    			}
+	echo "</pre>";
+
+	$i=0;
+	
+	//dsm(count($rid));
+	for ($i=0;$i<count($rid);$i++) {
+    	
+		$form['content']['choice'][$rid[$i]] = array(
+			'#type' => 'checkboxes',
+			'#options' => drupal_map_assoc(array(t('x'),t('y'),t('z'))),
+	  '#title' => '<img src="http://localhost/' . substr(drupal_realpath($uri[$i]),8) . '" height="50px"><br>' . $title[$i] . " " . $username[$i],
+			
+	    	);
+	}
+	
+	$form['count']=array('#type' => 'hidden', '#value' => count($rid));
+	$form['content']['nameyourgrp'] = array(
+		'#type' => 'textfield',
+		'#title' => t('Name with which you want to save'),
+		'#size' => 30,
+		'#maxlength' => 128,
+		'#required' => TRUE,
+	);
+	$form['content']['duration']['start'] = array(
+		'#type' => 'date_popup', 
+     		'#title' => t('Start Date'),
+		'#date_format' => 'Y-m-d',
+		'#description' => 'enter start date',
+		'#date_timezone' => 'America/Chicago',
+	);		
+		
+	$form['content']['duration']['finish'] = array(
+		'#type' => 'date_popup', 
+     		'#title' => t('Finish Date'),
+		'#date_format' => 'Y-m-d',
+		'#description' => 'enter finish date',
+		'#date_timezone' => 'America/Chicago',
+	);
+
+	$form['resetbutton'] = array(
+	    '#markup' => '<button type="reset" class="form-submit">reset</button>',
+	    '#weight' => 1000
+	);
+
+    	$form['submit']=array(
+        	'#type' => 'submit',
+        	'#value' => t('Save and Exit'),
+    	);
+
+    return $form;
+}
+
+function bhav_nodeload()
+	{
+		//print $user;
+		//print $type;
+		
+		db_query("truncate faketab");
+		$query = "
+				insert into faketab (nid,type,uid,username,status,title,uri,filename)
+				SELECT n.nid, n.type, n.uid, u.name, n.status,n.title, fm.uri, fm.filename
+				FROM node n, field_data_field_image fdfi, file_managed fm, users u
+				WHERE n.nid = fdfi.entity_id
+				AND fdfi.field_image_fid = fm.fid
+				AND n.status =1
+				AND u.uid = n.uid;
+			";
+		$result = db_query($query);
+
+	}
+
+function bhavxyz_form_submit($form,&$form_state)
+{
+	//dsm($form);
+	dsm($form_state);
+	$numop=$form_state['values']['count'];
+	$grpname=$form_state['values']['nameyourgrp'];
+	$start=$form_state['values']['start'];
+	$finish=$form_state['values']['finish'];
+	$imgx='';
+	$imgy='';
+	$imgz='';
+
+	$query="
+			SELECT rid,uri
+			FROM faketab;
+		";
+	$res = db_query($query);
+	
+	while($record = $res->fetchAssoc()) {
+				$rid[]=$record['rid'];
+				$uri[]=$record['uri'];
+				//dsm($record);			
+    			}
+
+	for($i=0;$i<$numop;$i++)
+	{
+		//dsm($form_state['values'][$rid[$i]]['x'] . " " . $uri[$i]);
+		if($form_state['values'][$rid[$i]]['x'])
+		{
+			$imgx = $imgx . $uri[$i] . ",";
+		}
+		
+		if($form_state['values'][$rid[$i]]['y'])
+		{
+			$imgy = $imgy . $uri[$i] . ",";
+		}
+		if($form_state['values'][$rid[$i]]['z'])
+		{
+			$imgz = $imgz . $uri[$i] . ",";
+		}
+	}
+	$imgx=substr($imgx,0,strlen($imgx)-1);
+	$imgy=substr($imgy,0,strlen($imgy)-1);
+	$imgz=substr($imgz,0,strlen($imgz)-1);
+	//dsm($imgx);
+	//dsm($imgy);
+	//dsm($imgz);
+	$query="
+			INSERT INTO `displayfront_bhav` (`start_date`, `end_date`, `group_name`, `user`, `x_display`, `y_display`, `z_display`) 
+			VALUES ('$start' , '$finish', '$grpname', '1', '$imgx', '$imgy', '$imgz');
+		";
+	//dsm($query);
+	$result=db_query($query);
+	$form_state['redirect'] ='http://localhost/drupal/?q=xyz2';
+}
+

@@ -1,0 +1,107 @@
+<?php
+function image_bhav_menu(){
+    $items = array();
+    $items['image_bhav']=array(
+        'title'=>'upload imagex',
+        'page callback'=>'drupal_get_form',
+        'page arguments'=>array('image_bhav_form'),
+        'access callback'=>TRUE,
+        'type'=>MENU_NORMAL_ITEM,  
+    );
+    return $items;
+}
+
+function image_bhav_form($form,&$form_state){
+	$form = array();
+	$form['#attributes'] = array(
+        	'enctype' => 'multipart/form-data',
+        	'autocomplete' => 'off'
+    	);
+
+    	$form['foo'] = array(
+    		'#type' => 'file',
+    		'#title' => t('image'),
+    	);
+    	$form['submit']=array(
+        	'#type' => 'submit',
+        	'#value' => t('upload'),
+    	);
+    return $form;
+}
+
+function image_bhav_form_submit($form,&$form_state){
+	$file = file_save_upload('foo');
+	dsm($file);
+
+//FOR UPLOADING BY URL
+
+/*	$path="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-ash4/275154_1684040417_301008311_q.jpg";
+	$image = file_get_contents($path);
+
+	if ($file2 = file_save_data($image, 'public://', FILE_EXISTS_REPLACE)) 
+	{
+	//	$form_state['values']['file'] = $file;
+		file_save($file2);
+	}
+	else 
+	{
+		form_set_error('file', t('Failed to write the uploaded url file the site\'s file folder.'));
+	}
+
+*/
+	if ($file = file_move($file, 'public://')) 
+	{
+		$form_state['values']['file'] = $file;
+		file_save($file);
+	}
+	else 
+	{
+		form_set_error('file', t('Failed to write the uploaded file the site\'s file folder.'));
+	}
+
+	$l=drupal_realpath($file->uri);
+
+	$command= 'identify -format "%h\n%k\n%m\n%n\n%r\n%w\n%x\n%y\n%z\n%C\n%H\n%Q\n%[size]" ' . $l;	
+
+//	dsm(shell_exec($command));	
+	$output = array();
+	exec($command, $output);
+	dsm($output);
+
+	$pieces = explode(" ", $output[6]);
+	$reso_x= $pieces[0];
+	$units= $pieces[1];
+
+	$pieces2 = explode(" ", $output[7]);
+	$reso_y= $pieces2[0];
+
+	$size = filter_var($output[12], FILTER_SANITIZE_NUMBER_INT);
+
+	$cmd = "identify -verbose ".$l;
+	exec( "$cmd 2>&1", $o, $r );
+	$return = ( "\n<pre>\n".join( "\n", $o )."\n</pre>\n" );
+
+	$start = strpos( $return, "Type:" );
+	$type = substr( $return, $start );
+	$length = strpos( $type, "\n" );
+	$type = substr( $type,6, $length-5 );
+
+	$nid=db_insert('image_attributes')
+		->fields(array(
+				'image_src' =>$l,
+				'image_format'=>$output[2],
+				'image_geomentry_height'=>intval($output[0]),
+				'image_geometry_width'=>intval($output[5]),
+				'image_resolution_x'=>intval($reso_x),
+				'image_resolution_y'=>intval($reso_y),
+				'image_size'=>$size,
+				'image_type'=>$type,
+				'image_colorSpace'=>$output[4],
+				'image_units_type'=>$units,
+				'image_compression'=>$output[9],
+				'image_creation_date'=>strtotime("now"),
+				)
+			)
+
+		->execute();
+}

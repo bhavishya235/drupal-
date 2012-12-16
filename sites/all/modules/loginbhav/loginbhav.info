@@ -1,0 +1,7 @@
+name = loginbhav
+description = "provides a multistep form for registering"
+package = qwerty
+core = 7.x
+files[] = loginbhav.module
+files[] = loginbhav.install
+

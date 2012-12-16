@@ -1,0 +1,7 @@
+name = image_bhav
+description = "The image_bhav module provides functionality built on the Schema API."
+package = qwerty
+core = 7.x
+files[] = image_bhav.module
+files[] = image_bhav.install
+

@@ -1,0 +1,7 @@
+name = bhavxyz2
+description = "This module gives u options for selecting images u want to display"
+package = qwerty
+core = 7.x
+files[] = bhavxyz2.module
+files[] = bhavxyz2.install
+
