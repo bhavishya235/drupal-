@@ -1,0 +1,78 @@
+Image: /var/www/drupal/sites/default/files/rango movie wallpaper (2).jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 1024x768+0+0
+  Resolution: 72x72
+  Print size: 14.2222x10.6667
+  Units: Undefined
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 51.411 (0.201612)
+      standard deviation: 36.2175 (0.142029)
+      kurtosis: 3.30827
+      skewness: 1.61757
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 44.0039 (0.172564)
+      standard deviation: 34.0064 (0.133358)
+      kurtosis: 3.91611
+      skewness: 1.8989
+    Blue:
+      min: 0 (0)
+      max: 208 (0.815686)
+      mean: 32.4492 (0.127252)
+      standard deviation: 28.8524 (0.113147)
+      kurtosis: 4.05858
+      skewness: 2.05224
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 42.6213 (0.167143)
+      standard deviation: 33.1693 (0.130076)
+      kurtosis: 4.50649
+      skewness: 1.95859
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 1024x768+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 94
+  Orientation: Undefined
+  Properties:
+    date:create: 2012-12-18T02:12:13+06:00
+    date:modify: 2012-12-18T02:12:13+06:00
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 1x1,1x1,1x1
+    signature: b2355ddb623d1aa67279360e376e819b6ab6f830f5ac33ae26b25dacb957ac0f
+    xmpMM:DerivedFrom: 
+  Profiles:
+    Profile-APP12: 15 bytes
+    Profile-exif: 22 bytes
+    Profile-xmp: 846 bytes
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 235KBB
+  Number pixels: 786KB
+  Pixels per second: 39.32MB
+  User time: 0.010u
+  Elapsed time: 0:01.019
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org

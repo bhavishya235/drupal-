@@ -1,91 +1,223 @@
 <?php
 
-	function bhavwidget_form_alter($form, $form_state, $form_id){
-		echo "Form ID: $form_id";
+function bhavwidget_form_alter($form, $form_state, $form_id){
+	echo "Form ID: $form_id";
+}
+
+function bhavwidget_form_field_ui_field_edit_form_alter(&$form, &$form_state, $form_id) {  
+
+	$query = "SELECT id,field_name FROM  field_config WHERE type = 'image'; ";
+	$out=db_query($query);
+
+	$id = array();
+	$fn=array();
+	while($record = $out->fetchAssoc()) {
+		$id[]=$record['id'];
+		$fn[]=$record['field_name'];
 	}
 
-	function bhavwidget_form_field_ui_field_edit_form_alter(&$form, &$form_state, $form_id) {  
+	//dsm($id);dsm($fn);
 
-		$query = "SELECT id,field_name FROM  field_config WHERE type = 'image'; ";
-		$out=db_query($query);
-		
-		$id = array();
-		$fn=array();
-		while($record = $out->fetchAssoc()) {
-				$id[]=$record['id'];
-				$fn[]=$record['field_name'];
-    			}
+	$req_id = $form['#field']['id'];
 
-		//dsm($id);dsm($fn);
-
-		$req_id = $form['#field']['id'];
-
-		foreach($id as $res)
+	foreach($id as $res)
+	{
+		//dsm($res);
+		if($req_id == $res)
 		{
-			//dsm($res);
-		  	if($req_id == $res)
-		  	{
-				$form['instance']['infosave'] = array(
+			$form['instance']['infosave'] = array(
 					'#type' => 'checkbox',
 					'#title' => t('Save information about the image in a file.'),
 					'#default_value' => isset($form['#instance']['infosave']) ? $form['#instance']['infosave'] : FALSE,
-			    		'#weight' => 2,
-		    		);
-				break;
-		  	}
+					'#weight' => 2,
+					);
+			break;
 		}
 	}
+}
 
-	function bhavwidget_form_node_form_alter(&$form,&$form_state)
+function bhavwidget_form_node_form_alter(&$form,&$form_state)
+{
+	//dsm($form);
+	//dsm($form_state);	
+	$form['#submit'][] = 'bhavwidget_submit_function';
+}
+
+function bhavwidget_submit_function($form,&$form_state)
+{
+	//dsm($form);		
+	//dsm($form_state);
+
+	$bundle = $form['#bundle'];
+	$node = $form['#entity_type'];		
+
+	$query=	"
+		SELECT fci.field_name FROM field_config fc , field_config_instance fci WHERE  fci.field_id = fc.id  AND fc.type = 'image' AND fci.bundle = '$bundle' AND entity_type = '$node';
+	";
+	//	dsm($query);
+	$fields=db_query($query);
+
+	foreach($fields as $f)
 	{
-		//dsm($form);
-		//dsm($form_state);	
-		$form['#submit'][] = 'bhavwidget_submit_function';
-	}
-
-	function bhavwidget_submit_function($form,&$form_state)
-	{
-		//dsm($form);		
-		//dsm($form_state);
-		
-		$bundle = $form['#bundle'];
-		$node = $form['#entity_type'];		
-
-		$query=	"
-				SELECT fci.field_name FROM field_config fc , field_config_instance fci WHERE  fci.field_id = fc.id  AND fc.type = 'image' AND fci.bundle = '$bundle' AND entity_type = '$node';
-			";
-		dsm($query);
-		$fields=db_query($query);
-
-		foreach($fields as $f)
+		//		dsm($f);
+		$field_instance = field_read_instance($node,$f->field_name,$bundle);
+		if(!empty($field_instance['infosave']))
 		{
-			dsm($f);
-			$field_instance = field_read_instance($node,$f->field_name,$bundle);
-			if(!empty($field_instance['infosave']))
+			foreach($form_state['values'][$f->field_name]['und'] as $n)
 			{
-				foreach($form_state['values'][$f->field_name]['und'] as $n)
-				{
-					if($n['fid']!=0) getstat($n['fid']);
-				}
+				if($n['fid']!=0) getstat($n['fid']);
 			}
 		}
-		
-		drupal_set_message(t('hey man'));
 	}
 
-	function getstat($fid)
+	drupal_set_message(t('hey man'));
+}
+
+
+function getstat($fid)
+{
+	$query ="
+		SELECT uri,filename
+		FROM file_managed
+		WHERE fid = '$fid';
+	";
+
+	$out=db_query($query);
+	while($record = $out->fetchAssoc()) {
+		$fn=$record['filename'];
+		$uri=$record['uri'];
+		//dsm($record);			
+	}
+	//	dsm($fn);dsm($uri);
+
+	$l=drupal_realpath($uri);
+
+	$search = array(' ','(',')','$','*','?','#');
+	$replace =  array('\ ','\(','\)','\$','\*','\?','\#');
+	$l = str_replace($search,$replace,$l);
+
+	$command= 'identify -format "%h\n%k\n%m\n%n\n%r\n%w\n%x\n%y\n%z\n%C\n%H\n%Q\n%[size]" ' . $l;	
+
+	dsm($command);	
+	$output = array();
+	exec($command, $output);
+	dsm($output);
+
+	if(isset($output[6]))
 	{
-		$query ="
-				SELECT uri,filename
-				FROM file_managed
-				WHERE fid = '$fid';
-			";
-
-		$out=db_query($query);
-		while($record = $out->fetchAssoc()) {
-				$fn[]=$record['filename'];
-				$uri[]=$record['uri'];
-    			}
-		dsm($fn);dsm($uri);
+		$pieces = explode(" ", $output[6]);
+		$reso_x= $pieces[0];
+		$units= $pieces[1];
 	}
 
+	if(isset($output[7]))
+	{
+		$pieces2 = explode(" ", $output[7]);
+		$reso_y= $pieces2[0];
+	}
+
+	$size = filter_var($output[12], FILTER_SANITIZE_NUMBER_INT);
+
+	$cmd = "identify -verbose ".$l;
+	exec( "$cmd 2>&1", $o, $r );
+	$return = ( "\n<pre>\n".join( "\n", $o )."\n</pre>\n" );
+
+	$start = strpos( $return, "Type:" );
+	$type = substr( $return, $start );
+	$length = strpos( $type, "\n" );
+	$type = substr( $type,6, $length-5 );
+
+	$p= str_replace("image", "image_details", $l , $count=1);
+	$len = strrpos($p,'.');
+	$p = substr($p,0,$len);
+	$command2= 'identify -verbose ' . $l . ' > ' . $p ;
+	dsm($command2);
+	exec($command2,$out);
+
+	$nid=db_insert('image_attributes')
+		->fields(array(
+					'uri' => $uri, 
+					'fid' =>$fid,
+					'image_format'=>$output[2],
+					'image_geomentry_height'=>intval($output[0]),
+					'image_geometry_width'=>intval($output[5]),
+					'image_resolution_x'=>intval($reso_x),
+					'image_resolution_y'=>intval($reso_y),
+					'image_size'=>$size,
+					'image_type'=>$type,
+					'image_colorSpace'=>$output[4],
+					'image_units_type'=>$units,
+					'image_compression'=>$output[9],
+					'image_creation_date'=>strtotime("now"),
+					'filepath' => $p,
+			      )
+			)
+
+		->execute();
+}
+
+function bhavwidget_menu(){
+	$items = array();
+	$items['bhavwidgettab']=array(
+			'title'=>'image statistics table',
+			'page callback'=>'stats_table',
+			'access callback'=>TRUE,
+			'type'=>MENU_NORMAL_ITEM,
+			);
+	return $items;
+}
+
+function stats_table(){
+	$output = "";
+
+	// Select table
+	$query = db_select("image_attributes", "r");
+	// Select fields
+	$query->fields("r", array("uri", "fid", "image_format", "image_geomentry_height", "image_geometry_width", "image_resolution_x", "image_resolution_y", "image_size", "image_type", "image_colorSpace", "image_units_type","image_creation_date", "filepath"));
+	// For pagination
+	$query = $query->extend('TableSort')->extend('PagerDefault')->limit(50);
+
+	// Execute query
+	$result = $query->execute();
+
+	// Prepare table header
+	$header = array("uri", "fid", "format", "height(px)", "width(px)", "resolution_x", "resolution_y", "size(kB)", "image_type", "colorSpace", "image_units_type","creation_date", "filepath");
+
+	$rows = array();
+
+	// Looping for filling the table rows
+	while($data = $result->fetchObject()){
+		// Fill the table rows
+		$rows[] = array(
+				$data->uri,
+				$data->fid,
+				$data->image_format,
+				$data->image_geomentry_height,
+				$data->image_geometry_width,
+				$data->image_resolution_x,
+				$data->image_resolution_y,
+				$data->image_size,
+				$data->image_type,
+				$data->image_colorSpace,
+				$data->image_units_type,
+				$data->image_creation_date,
+				$data->filepath
+			       );
+	}
+
+	// Output of table with the paging
+	$output = theme_table(
+			array(
+				"header" => $header,
+				"rows" => $rows,
+				"attributes" => array(),
+				"sticky" => true, // Table header will be sticky
+				"caption" => "",
+				"colgroups" => array(),
+				"empty" => t("Table has no row!") // The message to be displayed if table is empty
+			     )
+			).theme("pager");
+
+	return $output;
+}
+?>

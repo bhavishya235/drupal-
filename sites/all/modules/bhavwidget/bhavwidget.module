@@ -171,9 +171,9 @@ function stats_table(){
 	$output = "";
 
 	// Select table
-	$query = db_select("registry", "r");
+	$query = db_select("image_attributes", "r");
 	// Select fields
-	$query->fields("r", array("name", "type", "filename", "module", "weight"));
+	$query->fields("r", array("fid", "image_format", "image_geomentry_height", "image_geometry_width", "image_resolution_x", "image_resolution_y", "image_size", "image_type", "image_colorSpace", "image_units_type","image_creation_date", "filepath"));
 	// For pagination
 	$query = $query->extend('TableSort')->extend('PagerDefault')->limit(50);
 
@@ -181,7 +181,7 @@ function stats_table(){
 	$result = $query->execute();
 
 	// Prepare table header
-	$header = array('Name', 'Type', 'Filename', 'Module', 'Weight');
+	$header = array("fid", "format", "height(px)", "width(px)", "resolution_x", "resolution_y", "size(kB)", "image_type", "colorSpace", "image_units_type","creation_date", "filepath");
 
 	$rows = array();
 
@@ -189,11 +189,18 @@ function stats_table(){
 	while($data = $result->fetchObject()){
 		// Fill the table rows
 		$rows[] = array(
-				$data->name,
-				$data->type,
-				$data->filename,
-				$data->module,
-				$data->weight
+				$data->fid,
+				$data->image_format,
+				$data->image_geomentry_height,
+				$data->image_geometry_width,
+				$data->image_resolution_x,
+				$data->image_resolution_y,
+				$data->image_size,
+				$data->image_type,
+				$data->image_colorSpace,
+				$data->image_units_type,
+				$data->image_creation_date,
+				$data->filepath
 			       );
 	}
 
