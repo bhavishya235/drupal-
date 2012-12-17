@@ -1,0 +1,163 @@
+<html>
+    <head>
+        <title>
+            333
+        </title>
+<script>
+function OnResizeDocument() {
+          // console.log("The size of the window or the document has changed.");
+                var elem1=document.getElementById ("photoframes");
+                var elem2=document.getElementById ("headchange");
+                var elem3=document.getElementById ("footchange");
+                var elem22=document.getElementById ("headbutton");
+                var elem12=document.getElementById ("midimage");
+                var elem32=document.getElementById ("midsofa");
+                var bhav1=document.getElementById ("bhav1");
+                var bhav2=document.getElementById ("bhav2");
+                var bhav3=document.getElementById ("bhav3");
+                var bhav4=document.getElementById ("bhav4");
+                var bhav5=document.getElementById ("bhav5");
+                var bhav6=document.getElementById ("bhav6");
+                var tablet1=document.getElementById ("tablet1");
+                var tablet2=document.getElementById ("tablet2");
+                var tablet3=document.getElementById ("tablet3");
+                var tablet4=document.getElementById ("tablet4");
+                var tablet5=document.getElementById ("tablet5");
+                var tablet6=document.getElementById ("tablet6");
+                
+                if (typeof(document.body.clientWidth) == 'number') {
+                    width = document.body.clientWidth;
+                    console.log(width);
+                    tablet1.style.display="block";tablet3.style.display="block";tablet3.style.display="block";
+                    tablet4.style.display="block";tablet5.style.display="block";tablet6.style.display="block";
+                    elem22.className="span4";
+                    elem12.className="span4";
+                    elem32.className="span4";
+                                
+                    if(width > 830)
+                    {
+                        if(elem2)
+                        {
+                            
+                            bhav1.style.display="block";bhav2.style.display="block";bhav3.style.display="block";
+                            bhav4.style.display="block";bhav5.style.display="block";bhav6.style.display="block";
+                            elem1.className="span8";
+                            elem2.className="span8";
+                            elem3.className="span8";
+                        }
+                    }
+                    else
+                    {
+                            bhav1.style.display="none";bhav2.style.display="none";bhav3.style.display="none";
+                            bhav4.style.display="none";bhav5.style.display="none";bhav6.style.display="none";
+                            elem1.className="span10 offset1";
+                            elem2.className="span10 offset1";
+                            elem3.className="span10 offset1";
+                            if(width < 450)
+                            {
+                                tablet1.style.display="none";tablet2.style.display="none";tablet3.style.display="none";
+                                tablet4.style.display="none";tablet5.style.display="none";tablet6.style.display="none";
+                                elem22.className="span10 offset1";
+                                elem12.className="span10 offset1";
+                                elem32.className="span10 offset1";
+                            }
+                        
+                    }
+                }
+            }
+</script>
+<link rel="stylesheet" type="text/css" href="bootstrap.css">
+<body onresize="OnResizeDocument()" onload="OnResizeDocument()">
+    <div id="remove_scroll" style="background-color: red;" onresize="OnResizeDocument()" onload="OnResizeDocument()">
+        <div style="background-color: white;" id="cont">
+                <div class="page-header">
+                    <div class="bs-docs-grid">
+                        
+                        <div class="row-fluid">
+                            <div class="span2" id="bhav1" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE1.png);background-size: contain;background-repeat: repeat">
+                                <ul class="thumbnails">
+                                        <li class="span12">
+                                        </li>
+                                </ul>
+                            </div>
+                            <div class="span8" id="headchange" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE5.png);background-size: contain;background-repeat: repeat">
+                                <div class="row-fluid">
+                                    <ul class="thumbnails">
+                                        <li class="span4 cut_tablet" id="tablet1">
+                                            <img alt="260x180" class="thumbnails" src="themes/bartik/images/ArtCheckin-logo_with-TM.png">
+                                        </li>
+                                        <li class="span4" style="text-align: center" id="headbutton">
+                                                BUTTON
+                                        </li>
+                                        <li class="span4 cut_tablet" id="tablet2">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span2" id="bhav2" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE1R.png);background-size: contain;background-repeat:repeat">
+                                <ul class="thumbnails">
+                                        <li class="span12">
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <div class="row-fluid">
+                            <div class="span2" id="bhav3">
+                                WALL
+                            </div>
+                            <div class="span8" id="photoframes">
+                                <div class="row-fluid">
+                                    <ul class="thumbnails" style="background: -moz-linear-gradient(top,  #00FFFF,  #000);">
+                                        <li class="span4 cut_tablet" id="tablet3">
+                                            <img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png">
+                                        </li>
+                                        <li class="span4" id="midimage">
+                                                <img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png">
+                                        </li>
+                                        <li class="span4 cut_tablet" id="tablet4">
+                                            <img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span2  cut_bhav" id="bhav4" style="text-align:right">
+                                WALL
+                            </div>
+                        </div>
+                        
+                        <div class="row-fluid">
+                            <div class="span2  cut_bhav" id="bhav5" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE3.png);background-size: contain;background-position: right;background-repeat: repeat">
+                                <ul class="thumbnails">
+                                        <li class="span12">
+                                        </li>
+                                </ul>
+                            </div>
+                            <div class="span8" id="footchange">
+                                <div class="row-fluid">
+                                    <ul class="thumbnails" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE4.png);background-size: contain;background-position: left;background-repeat: repeat">
+                                        <li class="span4 cut_tablet" id="tablet5">
+                                            
+                                        </li>
+                                        <li class="span4" id="midsofa">
+                                                <img alt="260x180" class="thumbnails" src="AC_intopage_sofa.png">
+                                        </li>
+                                        <li class="span4 cut_tablet" id="tablet6">
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="span2  cut_bhav" id="bhav6" style="background-image: url(themes/bartik/images/AC_Intropage_PIECE3R.png);background-size: contain;background-position:left;background-repeat: repeat">
+                                <ul class="thumbnails">
+                                        <li class="span12">
+                                        </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+</body>
+</head>
+</html>

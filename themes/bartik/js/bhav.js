@@ -1,5 +1,5 @@
 function OnResizeDocument() {
-          // console.log("The size of the window or the document has changed.");
+          alert("The size of the window or the document has changed.");
                 var elem1=document.getElementById ("photoframes");
                 var elem2=document.getElementById ("headchange");
                 var elem3=document.getElementById ("footchange");

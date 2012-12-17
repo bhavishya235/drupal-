@@ -42,7 +42,7 @@ function bhavxyz_form($form,&$form_state){
 		$form['content']['choice'][$rid[$i]] = array(
 			'#type' => 'checkboxes',
 			'#options' => drupal_map_assoc(array(t('x'),t('y'),t('z'))),
-	  '#title' => '<img src="http://localhost/' . substr(drupal_realpath($uri[$i]),8) . '" height="50px"><br>' . $title[$i] . " " . $username[$i],
+	  '#title' => '<img src="http://localhost/' . substr(drupal_realpath($uri[$i]),8) . '" height="5px"><br>' . $title[$i] . " " . $username[$i],
 			
 	    	);
 	}

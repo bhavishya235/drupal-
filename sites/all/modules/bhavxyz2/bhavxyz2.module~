@@ -55,7 +55,7 @@ function bhavxyz2_form($form,&$form_state){
 		'#title' => 'Toggle',
     		'#header' => $header,
     		'#options' => $c,
-		'#js_select' => FALSE,
+		'#js_select' => TRUE,
 		'#multiple' => TRUE,
 		'#empty' => t('No content available.'),
 		'#prefix' => '<a href="http://localhost/drupal/?q=xyz">+add new</a><br>', 
