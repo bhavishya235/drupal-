@@ -1,0 +1,105 @@
+Image: /var/www/drupal/sites/default/files/Superman_vs_Goku_by_LoboGio.jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 2362x1962+0+0
+  Resolution: 300x300
+  Print size: 7.87333x6.54
+  Units: PixelsPerInch
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 87.8563 (0.344535)
+      standard deviation: 91.2765 (0.357947)
+      kurtosis: -1.26831
+      skewness: 0.654126
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 55.4557 (0.217473)
+      standard deviation: 67.0426 (0.262912)
+      kurtosis: 0.644753
+      skewness: 1.33578
+    Blue:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 66.2124 (0.259657)
+      standard deviation: 68.1477 (0.267246)
+      kurtosis: -0.189973
+      skewness: 0.979788
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 69.8415 (0.273888)
+      standard deviation: 76.3113 (0.29926)
+      kurtosis: -0.199226
+      skewness: 1.06407
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 2362x1962+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 92
+  Orientation: TopLeft
+  Properties:
+    date:create: 2012-12-18T01:30:24+05:00
+    date:modify: 2012-12-18T01:30:24+05:00
+    dc:format: image/jpeg
+    exif:ColorSpace: 4294967295
+    exif:Compression: 6
+    exif:DateTime: 2008:02:25 21:35:40
+    exif:ExifImageLength: 1962
+    exif:ExifImageWidth: 2362
+    exif:ExifOffset: 164
+    exif:JPEGInterchangeFormat: 302
+    exif:JPEGInterchangeFormatLength: 8745
+    exif:Orientation: 1
+    exif:PixelXDimension: 2362
+    exif:PixelYDimension: 1962
+    exif:ResolutionUnit: 2
+    exif:Software: Adobe Photoshop CS Windows
+    exif:XResolution: 300/1
+    exif:YResolution: 300/1
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 1x1,1x1,1x1
+    photoshop:History: 
+    signature: b2d993417713ff35a4da173cf09c8ec63ca699de67fd47e5302d37c0e7d500ac
+    stRef:documentID: adobe:docid:photoshop:529ceab2-e287-11dc-aebe-9cea9b883f4f
+    stRef:instanceID: uuid:cc5f992e-e3ed-11dc-8306-ef7fadc36188
+    tiff:XResolution: 300/1
+    tiff:YResolution: 300/1
+    xap:CreateDate: 2008-02-25T17:15:54-05:00
+    xap:CreatorTool: Adobe Photoshop CS Windows
+    xap:MetadataDate: 2008-02-25T21:35:40-05:00
+    xap:ModifyDate: 2008-02-25T21:35:40-05:00
+    xapMM:DocumentID: adobe:docid:photoshop:3b2cc170-e3ef-11dc-8306-ef7fadc36188
+  Profiles:
+    Profile-8bim: 10266 bytes
+    Profile-exif: 9053 bytes
+    Profile-iptc: 7 bytes
+      unknown[2,0]: 
+    Profile-xmp: 6434 bytes
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 1.081MBB
+  Number pixels: 4.634MB
+  Pixels per second: 66.2MB
+  User time: 0.060u
+  Elapsed time: 0:01.069
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org

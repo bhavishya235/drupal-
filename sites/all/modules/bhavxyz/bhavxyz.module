@@ -37,6 +37,8 @@ function bhavxyz_form($form,&$form_state){
 	$i=0;
 	
 	//dsm(count($rid));
+if(isset($rid))
+{
 	for ($i=0;$i<count($rid);$i++) {
     	//dsm(file_create_url($uri[$i]));
 		$form['content']['choice'][$rid[$i]] = array(
@@ -80,6 +82,16 @@ function bhavxyz_form($form,&$form_state){
         	'#type' => 'submit',
         	'#value' => t('Save and Exit'),
     	);
+}
+
+else
+{
+	$form['status'] = array(
+  		'#type' => 'fieldset',
+  		'#title' => t('NO RECORDS TO CHOOSE FROM'),
+	);
+
+}
 
     return $form;
 }
@@ -158,4 +170,3 @@ function bhavxyz_form_submit($form,&$form_state)
 	$result=db_query($query);
 	$form_state['redirect'] ='http://localhost/drupal/?q=xyz2';
 }
-

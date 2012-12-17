@@ -1,24 +1,24 @@
 <?php
 function bhavxyz2_menu(){
-    $items = array();
-    $items['xyz2']=array(
-        'title'=>'select slideshow for display',
-        'page callback'=>'drupal_get_form',
-	'page arguments'=>array('bhavxyz2_form'),
-        'access callback'=>TRUE,
-        'type'=>MENU_NORMAL_ITEM,  
-    );
-    return $items;
+	$items = array();
+	$items['xyz2']=array(
+			'title'=>'select slideshow for display',
+			'page callback'=>'drupal_get_form',
+			'page arguments'=>array('bhavxyz2_form'),
+			'access callback'=>TRUE,
+			'type'=>MENU_NORMAL_ITEM,  
+			);
+	return $items;
 }
 //TABLE displayfront_bhav
 
 function bhavxyz2_form($form,&$form_state){
 	$form = array();
 	$query = "
-			SELECT *
-			FROM displayfront_bhav
-			ORDER BY create_date DESC;
-		";
+		SELECT *
+		FROM displayfront_bhav
+		ORDER BY create_date DESC;
+	";
 	$result = db_query($query);
 	while($record = $result->fetchAssoc()) {
 		$gid[]=$record['bhav_gid'];
@@ -29,50 +29,69 @@ function bhavxyz2_form($form,&$form_state){
 	}
 
 	$i=0;	
-	
-	for($i=0;$i<count($gid);$i++)
+
+	if(isset($gid)) $count = count($gid);
+	else $count = 0;
+
+	for($i=0;$i<$count;$i++)
 	{
 		$c[$gid[$i]]=  array
-		(
-			'name' => $name[$i],
-			'start' => $sd[$i],
-			'end' => $ed[$i],
-			'status' => $status[$i],
-		);
+			(
+			 'name' => $name[$i],
+			 'start' => $sd[$i],
+			 'end' => $ed[$i],
+			 'status' => $status[$i],
+			);
 	}
 
 	$header=array
-	(
-		'name' => t('Name'),
-		'start' => t('Start'),
-		'end' => t('End'),
-		'status' => t('Status'),
-	);
-	
-	$form['table'] = array
-	(
-    		'#type' => 'tableselect',
-		'#title' => 'Toggle',
-    		'#header' => $header,
-    		'#options' => $c,
-		'#js_select' => TRUE,
-		'#multiple' => TRUE,
-		'#empty' => t('No content available.'),
-		'#prefix' => '<a href="http://localhost/drupal/?q=xyz">+add new</a><br>', 
-  	);
+		(
+		 'name' => t('Name'),
+		 'start' => t('Start'),
+		 'end' => t('End'),
+		 'status' => t('Status'),
+		);
+
+	if(isset($c))
+	{
+		$form['table'] = array
+			(
+			 '#type' => 'tableselect',
+			 '#title' => 'Toggle',
+			 '#header' => $header,
+			 '#options' => $c,
+			 '#js_select' => TRUE,
+			 '#multiple' => TRUE,
+			 '#empty' => t('No content available.'),
+			 '#prefix' => '<a href="http://localhost/drupal/?q=xyz">+add new</a><br>', 
+			);
+	}
+	else
+	{
+		$form['table'] = array
+			(
+			 '#type' => 'tableselect',
+			 '#title' => 'Toggle',
+			 '#header' => $header,
+			 '#js_select' => TRUE,
+			 '#multiple' => TRUE,
+			 '#empty' => t('No content available.'),
+			 '#prefix' => '<a href="http://localhost/drupal/?q=xyz">+add new</a><br>', 
+			);
+	}
 
 	$form['submit'] = array
-  	(
-    		'#type' => 'submit',
-    		'#value' => t('Submit'),
-  	);
-  	return $form;
+		(
+		 '#type' => 'submit',
+		 '#value' => t('Submit'),
+		);
+	return $form;
 }
 
 function bhavxyz2_form_submit($form,&$form_state)
 {
 	dsm($form_state);
-	
+
 	$togfor="";
 	foreach($form_state['values']['table'] as $check)
 	{
@@ -84,12 +103,12 @@ function bhavxyz2_form_submit($form,&$form_state)
 	}
 
 	$togfor = substr($togfor,0,strlen($togfor)-1);
-	
+
 	$query = "
-			UPDATE `displayfront_bhav` 
-			SET `status` = (status + 1)%2 
-			WHERE `bhav_gid` IN ($togfor);
-		";
+		UPDATE `displayfront_bhav` 
+		SET `status` = (status + 1)%2 
+		WHERE `bhav_gid` IN ($togfor);
+	";
 
 	dsm($query);
 	$result = db_query($query);

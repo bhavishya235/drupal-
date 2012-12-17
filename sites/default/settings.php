@@ -217,7 +217,7 @@ $databases = array (
     array (
       'database' => 'drupal',
       'username' => 'root',
-      'password' => '',
+      'password' => 'qwerty',
       'host' => 'localhost',
       'port' => '',
       'driver' => 'mysql',

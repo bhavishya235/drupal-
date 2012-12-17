@@ -1400,8 +1400,10 @@ function file_space_used($uid = NULL, $status = FILE_STATUS_PERMANENT) {
  *   - destination: Path to the file after it is moved (same as 'uri').
  */
 function file_save_upload($source, $validators = array(), $destination = FALSE, $replace = FILE_EXISTS_RENAME) {
+
   global $user;
   static $upload_cache;
+
 
   // Return cached objects without processing since the file will have
   // already been processed and the paths in _FILES will be invalid.
@@ -1558,6 +1560,7 @@ function file_save_upload($source, $validators = array(), $destination = FALSE, 
       $file->fid = $existing->fid;
     }
   }
+
 
   // If we made it this far it's safe to record this file in the database.
   if ($file = file_save($file)) {

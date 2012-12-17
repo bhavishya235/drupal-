@@ -1,0 +1,73 @@
+Image: /var/www/drupal/sites/default/files/field/image/Black Ops 1 (16)_1.jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 1600x900+0+0
+  Resolution: 72x72
+  Print size: 22.2222x12.5
+  Units: Undefined
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 114.319 (0.448311)
+      standard deviation: 60.5132 (0.237307)
+      kurtosis: -0.63697
+      skewness: 0.251549
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 113.819 (0.44635)
+      standard deviation: 59.8954 (0.234884)
+      kurtosis: -0.752101
+      skewness: 0.19919
+    Blue:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 105.975 (0.41559)
+      standard deviation: 57.353 (0.224914)
+      kurtosis: -0.85655
+      skewness: 0.164449
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 111.371 (0.43675)
+      standard deviation: 59.2697 (0.23243)
+      kurtosis: -0.701032
+      skewness: 0.216021
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 1600x900+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 87
+  Orientation: Undefined
+  Properties:
+    date:create: 2012-12-18T01:21:37+06:00
+    date:modify: 2012-12-18T01:21:37+06:00
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 2x2,1x1,1x1
+    signature: ce85c9104aefd584296d289e26a9019fe0ccd3899c30b985f5cbb117c1b207c0
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 299KBB
+  Number pixels: 1.44MB
+  Pixels per second: 144MB
+  User time: 0.010u
+  Elapsed time: 0:01.009
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org

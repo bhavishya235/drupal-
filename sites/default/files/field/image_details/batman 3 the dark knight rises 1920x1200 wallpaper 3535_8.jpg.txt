@@ -1,0 +1,75 @@
+Image: /var/www/drupal/sites/default/files/field/image/batman 3 the dark knight rises 1920x1200 wallpaper 3535_8.jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 1920x1200+0+0
+  Resolution: 72x72
+  Print size: 26.6667x16.6667
+  Units: Undefined
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 81.3468 (0.319007)
+      standard deviation: 75.4246 (0.295783)
+      kurtosis: -0.925535
+      skewness: 0.526863
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 51.1651 (0.200647)
+      standard deviation: 48.9846 (0.192097)
+      kurtosis: 0.492978
+      skewness: 0.809247
+    Blue:
+      min: 0 (0)
+      max: 242 (0.94902)
+      mean: 27.7039 (0.108643)
+      standard deviation: 29.2936 (0.114877)
+      kurtosis: 8.48638
+      skewness: 2.00998
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 53.4053 (0.209432)
+      standard deviation: 54.6092 (0.214154)
+      kurtosis: 2.47581
+      skewness: 1.57834
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 1920x1200+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 100
+  Orientation: Undefined
+  Properties:
+    comment: CREATOR: gd-jpeg v1.0 (using IJG JPEG v62), quality = 100
+
+    date:create: 2012-12-18T01:01:24+06:00
+    date:modify: 2012-12-18T01:01:24+06:00
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 2x2,1x1,1x1
+    signature: 967ef4781107f1627cdce374411154433f2ad942a577900e4b65e728e90b083c
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 927KBB
+  Number pixels: 2.304MB
+  Pixels per second: 76.8MB
+  User time: 0.030u
+  Elapsed time: 0:01.029
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org

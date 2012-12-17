@@ -1,0 +1,114 @@
+Image: /var/www/drupal/sites/default/files/field/image/the_swat_kats_by_zims_lost_soul-d2zk6nj.jpg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 688x736+0+0
+  Resolution: 72x72
+  Print size: 9.55556x10.2222
+  Units: PixelsPerInch
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 101.509 (0.398074)
+      standard deviation: 89.6308 (0.351493)
+      kurtosis: -1.49809
+      skewness: 0.34596
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 79.7124 (0.312598)
+      standard deviation: 73.8485 (0.289602)
+      kurtosis: -0.918804
+      skewness: 0.658904
+    Blue:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 67.0282 (0.262856)
+      standard deviation: 60.3684 (0.236739)
+      kurtosis: 0.759431
+      skewness: 1.1059
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 82.7498 (0.324509)
+      standard deviation: 75.5681 (0.296346)
+      kurtosis: -0.630773
+      skewness: 0.765486
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 688x736+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 93
+  Orientation: TopLeft
+  Properties:
+    date:create: 2012-12-17T23:57:43+05:00
+    date:modify: 2012-12-17T23:57:43+05:00
+    dc:format: image/jpeg
+    exif:ColorSpace: 0
+    exif:Compression: 6
+    exif:DateTime: 2010:09:26 20:23:26
+    exif:ExifImageLength: 736
+    exif:ExifImageWidth: 688
+    exif:ExifOffset: 174
+    exif:JPEGInterchangeFormat: 270
+    exif:JPEGInterchangeFormatLength: 9530
+    exif:NativeDigest: 36864,40960,40961,37121,37122,40962,40963,37510,40964,36867,36868,33434,33437,34850,34852,34855,34856,37377,37378,37379,37380,37381,37382,37383,37384,37385,37386,37396,41483,41484,41486,41487,41488,41492,41493,41495,41728,41729,41730,41985,41986,41987,41988,41989,41990,41991,41992,41993,41994,41995,41996,42016,0,2,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,20,22,23,24,25,26,27,28,30;610D9CF1E90855C8D25F8432BEC49457
+    exif:Orientation: 1
+    exif:PixelXDimension: 559
+    exif:PixelYDimension: 598
+    exif:ResolutionUnit: 2
+    exif:Software: ACD Systems Digital Imaging
+    exif:SubSecTime: 917
+    exif:XResolution: 720000/10000
+    exif:YCbCrPositioning: 1
+    exif:YResolution: 720000/10000
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 2x1,1x1,1x1
+    photoshop:ColorMode: 3
+    photoshop:History: 
+    rdf:Alt: 
+     
+    
+    signature: dce7c6a7e7e6f7be825fddd120737b249bf7caec9d080e2d889630ab52bd6e71
+    stRef:documentID: uuid:B01ACF5A7CC7DF1197C6FF28C94E63E3
+    stRef:instanceID: uuid:9B4AAAFEBFC9DF11986E9BAC8F575324
+    tiff:NativeDigest: 256,257,258,259,262,274,277,284,530,531,282,283,296,301,318,319,529,532,306,270,271,272,305,315,33432;BAEB9B938275E82065B7B8DA5DE2D44B
+    tiff:XResolution: 720000/10000
+    tiff:YResolution: 720000/10000
+    xap:CreateDate: 2010-09-26T20:19:48-04:00
+    xap:CreatorTool: Adobe Photoshop CS3 Windows
+    xap:MetadataDate: 2010-09-26T20:19:48-04:00
+    xap:ModifyDate: 2010-09-27T00:19:480Z
+    xapMM:DocumentID: uuid:36EC0062C0C9DF11A6959440431E56C6
+    xapMM:InstanceID: uuid:F0BE0BF0CCC9DF11A6959440431E56C6
+  Profiles:
+    Profile-8bim: 18 bytes
+    Profile-exif: 9806 bytes
+    Profile-iptc: 6 bytes
+      Image Name[2,5]:  
+    Profile-xmp: 2674 bytes
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 155KBB
+  Number pixels: 506KB
+  Pixels per second: 50.64MB
+  User time: 0.000u
+  Elapsed time: 0:01.009
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org

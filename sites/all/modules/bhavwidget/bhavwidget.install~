@@ -1,0 +1,96 @@
+<?php
+
+function bhavwidget_schema(){
+$schema['image_attributes'] = array(
+  'description' => 'Stores information about an image uploaded',
+  'fields' => array(
+    'image_id' => array(
+      'description' => 'image id specific to this module only',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'uri' => array(
+      'description' => 'uri of the image',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_src' => array(
+      'description' => 'source of the image($uri)',
+      'type' => 'varchar',
+      'length' => '300',
+      'not null' => TRUE,
+    ),
+    'image_format' => array(
+      'description' => 'image format',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_geomentry_height' => array(
+      'description' => 'height in pixel',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'image_geometry_width' => array(
+      'description' => 'width in pixel',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'image_resolution_x' => array(
+      'description' => 'resolution of image along x axis:units are defined in image_unit_type',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'image_resolution_y' => array(
+      'description' => 'resolution of image along y axis:units are defined in image_unit_type',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'image_size' => array(
+      'description' => 'size of image in kB',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'image_type' => array(
+      'description' => 'image type_UNDEFINED,BILEVEL,GRAYSCALE,GRAYSCALEMATTE,PALETTE,PALETTEMATTE,TRUECOLOR,TRUECOLORMATTE,COLORSEPARATION,COLORSEPARATIONMATTE,OPTIMIZE ',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_colorSpace' => array(
+      'description' => 'TType of color space',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_units_type' => array(
+      'description' => 'units for measuring resolution',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_compression' => array(
+      'description' => 'TODO: please describe this field!',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+    'image_creation_date' => array(
+      'description' => 'date when image was uploaded',
+      'type' => 'int',
+      'not null' => TRUE,
+    ),
+    'filepath' => array(
+      'description' => 'absolute path of the file for more stats',
+      'type' => 'varchar',
+      'length' => '100',
+      'not null' => TRUE,
+    ),
+  ),
+  'primary key' => array('image_id'),
+);
+
+return $schema;
+}
+?>

@@ -1,0 +1,91 @@
+<?php
+
+	function bhavwidget_form_alter($form, $form_state, $form_id){
+		echo "Form ID: $form_id";
+	}
+
+	function bhavwidget_form_field_ui_field_edit_form_alter(&$form, &$form_state, $form_id) {  
+
+		$query = "SELECT id,field_name FROM  field_config WHERE type = 'image'; ";
+		$out=db_query($query);
+		
+		$id = array();
+		$fn=array();
+		while($record = $out->fetchAssoc()) {
+				$id[]=$record['id'];
+				$fn[]=$record['field_name'];
+    			}
+
+		//dsm($id);dsm($fn);
+
+		$req_id = $form['#field']['id'];
+
+		foreach($id as $res)
+		{
+			//dsm($res);
+		  	if($req_id == $res)
+		  	{
+				$form['instance']['infosave'] = array(
+					'#type' => 'checkbox',
+					'#title' => t('Save information about the image in a file.'),
+					'#default_value' => isset($form['#instance']['infosave']) ? $form['#instance']['infosave'] : FALSE,
+			    		'#weight' => 2,
+		    		);
+				break;
+		  	}
+		}
+	}
+
+	function bhavwidget_form_node_form_alter(&$form,&$form_state)
+	{
+		//dsm($form);
+		//dsm($form_state);	
+		$form['#submit'][] = 'bhavwidget_submit_function';
+	}
+
+	function bhavwidget_submit_function($form,&$form_state)
+	{
+		//dsm($form);		
+		//dsm($form_state);
+		
+		$bundle = $form['#bundle'];
+		$node = $form['#entity_type'];		
+
+		$query=	"
+				SELECT fci.field_name FROM field_config fc , field_config_instance fci WHERE  fci.field_id = fc.id  AND fc.type = 'image' AND fci.bundle = '$bundle' AND entity_type = '$node';
+			";
+		dsm($query);
+		$fields=db_query($query);
+
+		foreach($fields as $f)
+		{
+			dsm($f);
+			$field_instance = field_read_instance($node,$f->field_name,$bundle);
+			if(!empty($field_instance['infosave']))
+			{
+				foreach($form_state['values'][$f->field_name]['und'] as $n)
+				{
+					if($n['fid']!=0) getstat($n['fid']);
+				}
+			}
+		}
+		
+		drupal_set_message(t('hey man'));
+	}
+
+	function getstat($fid)
+	{
+		$query ="
+				SELECT uri,filename
+				FROM file_managed
+				WHERE fid = '$fid';
+			";
+
+		$out=db_query($query);
+		while($record = $out->fetchAssoc()) {
+				$fn[]=$record['filename'];
+				$uri[]=$record['uri'];
+    			}
+		dsm($fn);dsm($uri);
+	}
+
