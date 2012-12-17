@@ -32,11 +32,11 @@
 	$x=to1d($imgx);
 	$y=to1d($imgy);
 	$z=to1d($imgz);
-	echo "<pre>";
+	/*echo "<pre>";
 	print_r($x);
 	print_r($y);
 	print_r($z);
-	echo "</pre>";
+	echo "</pre>";*/
 	//echo getcwd();
 ?>
 <script language="javascript">
@@ -245,23 +245,23 @@ div.navBulletsWrapper div.active {background-position:0 -11px;}
                             </div>
                             <div class="span8" id="photoframes">
                                 <div class="row-fluid">
-                                    <ul class="thumbnails" style="background: -moz-linear-gradient(top,  #00FFFF,  #000);">
-                                        <li class="span4 cut_tablet" id="tablet3" style="background-image: url(themes/bartik/images/AC_Intro_Logo_blank_frame.png); background-repeat: no-repeat;padding: 5px; height: 400px">
+                                    <ul class="thumbnails img3image" style="background: -moz-linear-gradient(top,  #00FFFF,  #000);">
+                                        <li class="span4 cut_tablet" id="tablet3">
                                           <!--  <img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png">-->
-					  <div style="width:238px;height:350px;overflow:hidden;">
-						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_A.png" name="slide1" width="238px" height="auto" style="margin-top: 9em;margin-left: 1.4em">
+					  <div>
+						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_A.png" name="slide1">
                                           </div>
 					</li>
-					<li class="span4" id="midimage" style="background-image: url(themes/bartik/images/AC_Intro_Logo_blank_frame.png); background-repeat: no-repeat;padding: 5px; height: 400px">
+					<li class="span4" id="midimage">
                                                 <!--<img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png" >-->
-					    <div style="width:238px;height:350px;overflow:hidden;">
-						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_R.png" name="slide2" style="margin-top: 9em;margin-left: 1.4em">
+					    <div>
+						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_R.png" name="slide2" >
 					    </div>
 					</li>
-                                        <li class="span4 cut_tablet" id="tablet4" style="background-image: url(themes/bartik/images/AC_Intro_Logo_blank_frame.png); background-repeat: no-repeat;padding: 5px; height: 400px">
+                                        <li class="span4 cut_tablet" id="tablet4" >
                                             <!--<img alt="260x180" class="thumbnails" src="themes/bartik/images/AC_Intro_Logo_blank_frame.png">-->
-					    <div style="width:238px;min-height:350px;max-height: 350px;overflow:hidden;">
-						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_T.png" name="slide3" style="margin-top: 9em;margin-left: 1.4em">
+					    <div>
+						<img alt="260x180" class="thumbnails visible" src="themes/bartik/images/AC_Intro_Logo_T.png" name="slide3" >
 					    </div>
 					</li>
                                         

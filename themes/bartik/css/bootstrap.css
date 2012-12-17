@@ -7,6 +7,21 @@
  *
  * Designed and built with all the love in the world @twitter by @mdo and @fat.
  */
+.img3image li{
+  padding:131px 71px 37px 23px;
+  height: 400px;
+  background-image: url(../images/AC_Intro_Logo_blank_frame.png);
+  background-repeat: no-repeat;
+}
+.img3image li div{
+  height: 100%;
+  width: 100%;
+}
+
+.img3image li img{
+  height: 100%;
+  width: 100%;
+}
 
 article,
 aside,
