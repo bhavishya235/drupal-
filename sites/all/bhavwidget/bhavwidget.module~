@@ -1,0 +1,241 @@
+<?php
+
+function bhavwidget_form_alter($form, $form_state, $form_id){
+	echo "Form ID: $form_id";
+}
+
+function bhavwidget_form_field_ui_field_edit_form_alter(&$form, &$form_state, $form_id) {  
+
+	$query = "SELECT id,field_name FROM  field_config WHERE type = 'image'; ";
+	$out=db_query($query);
+
+	$id = array();
+	$fn=array();
+	while($record = $out->fetchAssoc()) {
+		$id[]=$record['id'];
+		$fn[]=$record['field_name'];
+	}
+
+	$req_id = $form['#field']['id'];
+
+	foreach($id as $res)
+	{
+		//dsm($res);
+		if($req_id == $res)
+		{
+			$form['instance']['infosave'] = array(
+					'#type' => 'checkbox',
+					'#title' => t('Save information about the image in a file.'),
+					'#default_value' => isset($form['#instance']['infosave']) ? $form['#instance']['infosave'] : FALSE,
+					'#weight' => 2,
+					);
+			break;
+		}
+	}
+}
+
+function bhavwidget_form_node_form_alter(&$form,&$form_state)
+{
+	//dsm($form);
+	//dsm($form_state);	
+	$form['#submit'][] = 'bhavwidget_submit_function';
+}
+
+/*function bhavwidget_node_update($node)
+{
+	dsm("update starts");
+	dsm($node);
+	dsm("update ends");
+}
+*/
+
+function bhavwidget_node_presave($node)
+{
+	dsm("presave starts");
+	dsm($node);
+	dsm("presave ends");
+}
+
+function bhavwidget_node_delete($node)
+{
+	dsm("delete starts");
+	dsm($node);
+	dsm("delete ends");
+}
+
+function bhavwidget_submit_function($form,&$form_state)
+{
+	dsm("submmit starts");
+	/*dsm("form");
+	dsm($form);
+	dsm("form_state");		
+	dsm($form_state);*/
+
+	$bundle = $form['#bundle'];
+	$node = $form['#entity_type'];		
+
+	$query=	"
+		SELECT fci.field_name FROM field_config fc , field_config_instance fci WHERE  fci.field_id = fc.id  AND fc.type = 'image' AND fci.bundle = '$bundle' AND entity_type = '$node';
+	";
+	$fields=db_query($query);
+
+	foreach($fields as $f)
+	{
+		$field_instance = field_read_instance($node,$f->field_name,$bundle);
+		if(!empty($field_instance['infosave']))
+		{
+			foreach($form_state['values'][$f->field_name]['und'] as $n)
+			{
+				if($n['fid']!=0) getstat($n['fid']);
+			}
+		}
+	}
+
+	dsm("submmit ends");
+	//drupal_set_message(t('hey man'));
+}
+
+
+function getstat($fid)
+{
+try {
+	$query ="
+		SELECT uri,filename
+		FROM file_managed
+		WHERE fid = '$fid';
+	";
+
+	$out=db_query($query);
+	while($record = $out->fetchAssoc()) {
+		$fn=$record['filename'];
+		$uri=$record['uri'];			
+	}
+
+	$l=drupal_realpath($uri);
+
+	$search = array(' ','(',')','$','*','?','#');
+	$replace =  array('\ ','\(','\)','\$','\*','\?','\#');
+
+	//HAVE A LOOK AT  "escapeshellcmd ( string $command )" for further use
+
+	$l = str_replace($search,$replace,$l);
+
+	$command= 'identify -format "%h\n%k\n%m\n%n\n%r\n%w\n%x\n%y\n%z\n%C\n%H\n%Q\n%[size]" ' . $l;	
+
+	$output = array();
+	if(!exec($command, $output))
+	{
+		 throw new Exception("Error in executing shell script command $command");
+	};
+
+	if(isset($output[6]))
+	{
+		$pieces = explode(" ", $output[6]);
+		$reso_x= $pieces[0];
+		$units= $pieces[1];
+	}
+
+	if(isset($output[7]))
+	{
+		$pieces2 = explode(" ", $output[7]);
+		$reso_y= $pieces2[0];
+	}
+
+	$size = filter_var($output[12], FILTER_SANITIZE_NUMBER_INT);
+
+	$cmd = "identify -verbose ".$l;
+	exec( "$cmd", $o, $r );
+	dsm($r);
+	$return = ( "\n<pre>\n".join( "\n", $o )."\n</pre>\n" );
+	dsm($return);
+
+	$start = strpos( $return, "Type:" );
+	$type = substr( $return, $start );
+	$length = strpos( $type, "\n" );
+	$type = substr( $type,6, $length-5 );
+
+	$p= str_replace("image", "image_details", $l , $count=1);
+	$len = strrpos($p,'.');
+	$p = substr($p,0,$len);
+	$command2= 'identify -verbose ' . $l . ' > ' . $p ;
+	dsm($command2);
+	exec($command2,$out);
+
+	$nid=db_insert('image_attributes')
+		->fields(array(
+					'uri' => $uri, 
+					'fid' =>$fid,
+					'image_format'=>$output[2],
+					'image_geomentry_height'=>intval($output[0]),
+					'image_geometry_width'=>intval($output[5]),
+					'image_resolution_x'=>intval($reso_x),
+					'image_resolution_y'=>intval($reso_y),
+					'image_size'=>$size,
+					'image_type'=>$type,
+					'image_colorSpace'=>$output[4],
+					'image_units_type'=>$units,
+					'image_compression'=>$output[9],
+					'image_creation_date'=>strtotime("now"),
+					'filepath' => $p,
+			      )
+			)
+
+		->execute();*/
+}
+
+/*function bhavwidget_menu(){
+	$items = array();
+	$items['bhavwidgettab']=array(
+			'title'=>'image statistics table',
+			'page callback'=>'stats_table',
+			'access callback'=>TRUE,
+			'type'=>MENU_NORMAL_ITEM,
+			);
+	return $items;
+}
+
+function stats_table(){
+	$output = "";
+
+	// Select table
+	$query = db_select("image_attributes", "r");
+	// Select fields
+	$query->fields("r", array("fid", "image_format", "image_geomentry_height", "image_geometry_width", "image_resolution_x","image_resolution_y","image_size","image_colorSpace","image_units_type","filepath","image_type"));
+	// For pagination
+	$query = $query->extend('TableSort')->extend('PagerDefault')->limit(50);
+
+	// Execute query
+	$result = $query->execute();
+
+	// Prepare table header
+	$header = array('fid', 'format', 'height(px)', 'width(px)', 'resolution (x)','resolution(y)','size(kB)','collospace','units','filepath','type');
+
+	$rows = array();
+
+	// Looping for filling the table rows
+	while($data = $result->fetchObject()){
+		// Fill the table rows
+		$rows[] = array(
+				$data->name,
+				$data->type,
+				$data->filename,
+				$data->module,
+				$data->weight
+			       );
+	}
+
+	// Output of table with the paging
+	$output = theme_table(
+			array(
+				"header" => $header,
+				"rows" => $rows,
+				"attributes" => array(),
+				"sticky" => true, // Table header will be sticky
+				"caption" => "",
+				"colgroups" => array(),
+				"empty" => t("Table has no row!") // The message to be displayed if table is empty
+			     )
+			).theme("pager");
+
+	return $output;
+}*/

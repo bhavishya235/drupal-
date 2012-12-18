@@ -1,4 +1,7 @@
 <?php
+
+//DELETING FROM DISPLAYFRONTBHAV LEFT
+
 function bhavxyz2_menu(){
 	$items = array();
 	$items['xyz2']=array(

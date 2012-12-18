@@ -2,4 +2,5 @@ name = bhavwidget
 description = "This module will add a checkbox to image field"
 package = qwerty
 core = 7.x
-files[] = bhavwidget.module
+files[] = bhavwidgt.module
+

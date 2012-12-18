@@ -1,4 +1,7 @@
 <?php
+
+//DELETING FROM DISPLAYFRONTBHAV LEFT
+
 function bhavxyz_menu(){
     $items = array();
     $items['xyz']=array(
@@ -23,7 +26,7 @@ function bhavxyz_form($form,&$form_state){
 
 	$result = db_query($query);
 	//print_r($result);	
-	echo "<pre>";
+	//echo "<pre>";
 	while($record = $result->fetchAssoc()) {
 				$rid[]=$record['rid'];
 				$nid[]=$record['nid'];
@@ -32,7 +35,7 @@ function bhavxyz_form($form,&$form_state){
 				$username[]=$record['username'];
 				//dsm($record);			
     			}
-	echo "</pre>";
+	//echo "</pre>";
 
 	$i=0;
 	
@@ -98,20 +101,33 @@ else
 
 function bhav_nodeload()
 	{
-		//print $user;
-		//print $type;
-		
-		db_query("truncate faketab");
-		$query = "
-				insert into faketab (nid,type,uid,username,status,title,uri,filename)
-				SELECT n.nid, n.type, n.uid, u.name, n.status,n.title, fm.uri, fm.filename
-				FROM node n, field_data_field_image fdfi, file_managed fm, users u
-				WHERE n.nid = fdfi.entity_id
-				AND fdfi.field_image_fid = fm.fid
-				AND n.status =1
-				AND u.uid = n.uid;
+		$query ="
+				SELECT fg.field_name 
+				FROM field_config fg, field_config_instance fcg 
+				WHERE fg.type = 'image' AND fcg.entity_type = 'node' AND fcg.field_name = fg.field_name;
 			";
 		$result = db_query($query);
+		
+		while($record = $result->fetchAssoc()) {
+				$imagefields[] = $record['field_name'];
+		}
+
+		db_query("truncate faketab");
+		foreach($imagefields as $fieldtab)
+		{
+	
+			$query = "
+					insert into faketab (nid,type,uid,username,status,title,uri,filename)
+					SELECT n.nid, n.type, n.uid, u.name, n.status,n.title, fm.uri, fm.filename
+					FROM node n, field_data_$fieldtab fdfi, file_managed fm, users u
+					WHERE n.nid = fdfi.entity_id
+					AND fdfi.$fieldtab" . "_fid = fm.fid
+					AND n.status =1
+					AND u.uid = n.uid;
+				";
+			//dsm($query);
+			$result = db_query($query);
+		}
 
 	}
 

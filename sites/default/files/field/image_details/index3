@@ -1,0 +1,73 @@
+Image: /var/www/drupal/sites/default/files/field/image/index3.jpeg
+  Format: JPEG (Joint Photographic Experts Group JFIF format)
+  Class: DirectClass
+  Geometry: 259x194+0+0
+  Resolution: 72x72
+  Print size: 3.59722x2.69444
+  Units: Undefined
+  Type: TrueColor
+  Endianess: Undefined
+  Colorspace: RGB
+  Depth: 8-bit
+  Channel depth:
+    red: 8-bit
+    green: 8-bit
+    blue: 8-bit
+  Channel statistics:
+    Red:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 114.526 (0.449121)
+      standard deviation: 71.2447 (0.279391)
+      kurtosis: -1.16656
+      skewness: -0.0659878
+    Green:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 120.695 (0.473314)
+      standard deviation: 71.3768 (0.279909)
+      kurtosis: -1.20159
+      skewness: -0.0504665
+    Blue:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 112.914 (0.442801)
+      standard deviation: 77.5067 (0.303948)
+      kurtosis: -1.34413
+      skewness: 0.0979973
+  Image statistics:
+    Overall:
+      min: 0 (0)
+      max: 255 (1)
+      mean: 116.045 (0.455079)
+      standard deviation: 73.4342 (0.287977)
+      kurtosis: -1.23488
+      skewness: -0.00421365
+  Rendering intent: Undefined
+  Interlace: None
+  Background color: white
+  Border color: rgb(223,223,223)
+  Matte color: grey74
+  Transparent color: black
+  Compose: Over
+  Page geometry: 259x194+0+0
+  Dispose: Undefined
+  Iterations: 0
+  Compression: JPEG
+  Quality: 76
+  Orientation: Undefined
+  Properties:
+    date:create: 2012-12-18T23:29:52+06:00
+    date:modify: 2012-12-18T23:29:52+06:00
+    jpeg:colorspace: 2
+    jpeg:sampling-factor: 2x2,1x1,1x1
+    signature: e9b8bf30342fe551894c1f999f046a594a2380724ec648fbc27e1f087647e43d
+  Artifacts:
+    verbose: true
+  Tainted: False
+  Filesize: 15KBB
+  Number pixels: 50.2KB
+  Pixels per second: 502.46TB
+  User time: 0.000u
+  Elapsed time: 0:01.000
+  Version: ImageMagick 6.6.9-7 2012-08-17 Q16 http://www.imagemagick.org
